@@ -8,3 +8,5 @@ main.py should be the only file the user needs to run.  All other files must be 
 
 Amscope folder contains the necessary code to open and communicate with the Amscope Camera.  This folder will need to be downloaded for the system to work, but it should not necessarily need to be opened or ran by the user.
 
+Required Python libraries:
+  -

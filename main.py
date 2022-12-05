@@ -72,9 +72,8 @@ def playing(Title):
 cam = ToupCamCamera()
 cam.open()
 time.sleep(1)
-#===================================================
 running = True
-#====================================================
+
 # Set default values for certain parameters
 cam.set_gamma(180)
 cam.set_gain(100)
@@ -85,7 +84,7 @@ root = Tk()
 root.title("Microscope Interface")
 root.geometry("200x500")
 
-
+# Open communications with the Arduino
 arduino = Open_Comms()
 i = 0
 
@@ -103,8 +102,6 @@ def slide(position):
     lhue = Label(root, text="Hue:   " + str(hue.get())).grid(row=10, column=0)
     lsaturation = Label(root, text="Saturation:   " + str(saturation.get())).grid(row=12, column=0)
     lexposure_time = Label(root, text="Exposure Time:   " + str(exposure_time.get())).grid(row=14, column=0)
-
-    #switch to setting value first, then set labels to cam.get_value()
 
     #actually set values for microscope while changing
     cam.set_gamma(gamma.get())
@@ -169,7 +166,5 @@ with open(folder + "\\parameters_used.text", "w+") as f:
     f.write("Saturation: " + str(saturation.get()) + "\n")
     f.write("Exposure time: " + str(exposure_time.get()) + "\n\n")
 
-##imcount = Label(root, text=i)
-##imcount.grid(row=0, column=6)
 
 root.mainloop()

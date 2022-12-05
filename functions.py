@@ -1,4 +1,4 @@
-# Functions to be called by GUIDetect_Blob_Count.py
+# Functions to be called by main.py
 
 # Import necessary modules
 import serial
@@ -25,12 +25,12 @@ def Solenoids_Off(arduino):
     time.sleep(1)
     arduino.close()
 
-###################################################################################################################
+#########################################################################################################
 
 def Solenoid_State(title, arduino, state):
     arduino.write(str.encode(str(state)))
 
-################################################################################
+#########################################################################################################
 
 def Awaiting_Foram(arduino):
     arduino.write(str.encode('1'))  # Gate 1 open, gate 2 closed
@@ -38,7 +38,7 @@ def Awaiting_Foram(arduino):
     detected = False
     return ready, detected
 
-########################################################################################################
+#########################################################################################################
 
 def Foram_Found(arduino, i, image, folder, cam):
     global ready2
@@ -95,7 +95,7 @@ def Foram_Found(arduino, i, image, folder, cam):
     ready = False
     return ready, i
 
-########################################################################################################
+#########################################################################################################
 
 def Blob_Detect(image, clean_image):
 
@@ -105,14 +105,14 @@ def Blob_Detect(image, clean_image):
     params = cv2.SimpleBlobDetector_Params()
 
     # Change thresholds
-    params.minThreshold = 100  # Changed from 50 to 100
+    params.minThreshold = 100  
     params.maxThreshold = 256
 
     # Filter by Area.
     params.filterByArea = True
-    params.minArea = 1_000  # Changed from 1_000 to 5_000
+    params.minArea = 1_000 
     
-    params.maxArea = 100_000 # Uncommented and changed from 10_000 to 100_000
+    params.maxArea = 100_000 
 
     # Filter by Color (black=0)
     params.filterByColor = True
@@ -150,7 +150,7 @@ def Blob_Detect(image, clean_image):
 
     return blobs, detected, blob_num
 
-###################################################################################################################
+#########################################################################################################
 
 def show():
     global myLabel
@@ -162,7 +162,7 @@ def show():
     myLabel = Label(root, text=var.get())
     myLabel.grid(row=0, column=2)
 
-###############################################################################
+#########################################################################################################
 
 def timer(a):
     global ready2
